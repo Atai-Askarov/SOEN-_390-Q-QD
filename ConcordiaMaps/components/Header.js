@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View, Text, Image } from 'react-native';
-
 function Header() {
   return (
     <SafeAreaView>
@@ -18,13 +17,12 @@ function Header() {
 const styles = StyleSheet.create({
   header: {
     width: '100%',
+    display:"flex",
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#912338',
     padding: 10,
-    position: 'relative',
-    zIndex: 1,  // Ensures the logo appears on top
   },
   logo: {
     width: 50,
