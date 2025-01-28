@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Animated, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [animation] = useState(new Animated.Value(0)); 
+  const [animation] = useState(new Animated.Value(0));
+  const navigation = useNavigation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -17,7 +19,11 @@ function NavBar() {
   };
 
   const handlePress = (item) => {
-    Alert.alert(`You clicked: ${item}`);
+    if (item === 'Log In') {
+      navigation.navigate('Login');
+    } else {
+      Alert.alert(`You clicked: ${item}`);
+    }
   };
 
   
@@ -37,8 +43,8 @@ function NavBar() {
 
       {isOpen && (
         <Animated.View style={[styles.menu, { height: menuHeight }]}>
-          <TouchableOpacity onPress={() => handlePress('Login')}>
-            <Text style={styles.menuItem}>Login</Text>
+          <TouchableOpacity onPress={() => handlePress('Log In')}>
+            <Text style={styles.menuItem}>Log In</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress('Get directions')}>
             <Text style={styles.menuItem}>Get directions</Text>
