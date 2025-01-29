@@ -20,7 +20,7 @@ function NavBar() {
 
   const handlePress = (item) => {
     if (item === 'Log In') {
-      navigation.navigate('Login');
+      navigation.navigate('Log In');
     } else {
       Alert.alert(`You clicked: ${item}`);
     }
