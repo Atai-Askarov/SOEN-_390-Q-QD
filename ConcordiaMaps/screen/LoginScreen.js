@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
+WebBrowser.maybeCompleteAuthSession();
+import * as Google from 'expo-auth-session/providers/google';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Button } from 'react-native-web';
+//import * as React from 'react';
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -9,10 +15,49 @@ function LoginScreen() {
     // Add login logic here
     Alert.alert('Login button pressed', `Email: ${email}, Password: ${password}`);
   };
+  
+  // New Code Here
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+    clientId:
+      '809412158120-f6v4s69j7pdu3k2vlools5t5385k5sd7.apps.googleusercontent.com',
+  });
+
+  const getUserInfo = async (token) => {
+    if (!token) return;
+    try {
+      const response = await fetch(
+        'https://www.googleapis.com/userinfo/v2/me',
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      
+      const user = await response.json();
+      await AsyncStorage.setItem('@user', JSON.stringify(user));
+      setUserInfo(user);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  async function handleSignInWithGoogle() {
+    const user = await AsyncStorage.getItem('@user');
+    if (!user) {
+      if (response?.type === 'success') {
+        await getUserInfo(response.authentication.accessToken);
+      }
+    } else {
+      setUserInfo(JSON.parse(user));
+    }
+  }
+
+  React.useEffect(() => {
+    handleSignInWithGoogle();
+  }, [response]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Log In</Text>
+      {/* <Text style={styles.title}>Log In</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -30,7 +75,16 @@ function LoginScreen() {
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Log In</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+
+      <Text>{JSON.stringify(userInfo)}</Text>
+      <Text>ConcordiaMaps Sign in</Text>
+      <Button title='Sign in with Google' onPress={promptAsync}/>
+      <Button
+        title='delete local storage'
+        onPress={() => AsyncStorage.removeItem('@user')}
+      />
+      <StatusBar style="auto"/>
     </View>
   );
 }

@@ -19,10 +19,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ConcordiaMaps"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0a09cd0b-0726-4414-944d-de6d62295354"
+      }
+    },
+    "scheme": "ConcordiaMapsScheme"
   }
 }
