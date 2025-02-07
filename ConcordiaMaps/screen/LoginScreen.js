@@ -6,6 +6,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from 'react-native-web';
 //import * as React from 'react';
+import { ANDROID_CLIENT_ID } from '@env';
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -18,8 +19,7 @@ function LoginScreen() {
   
   // New Code Here
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId:
-      '809412158120-f6v4s69j7pdu3k2vlools5t5385k5sd7.apps.googleusercontent.com',
+    clientId: ANDROID_CLIENT_ID
   });
 
   const getUserInfo = async (token) => {
