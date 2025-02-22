@@ -37,3 +37,6 @@ yarn-error.*
 *.tsbuildinfo
 
 coverage/
+
+package-lock.json
+package.json

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import axios from "axios";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, UrlTile } from "react-native-maps"; // Import UrlTile
 import NavBar from "../components/NavBar";
 import Header from "../components/Header";
 import { LocationContext } from "../contexts/LocationContext";
@@ -32,7 +32,7 @@ function HomeScreen() {
   const convertToCoordinates = async (postal_code) => {
     try {
       const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${postal_code}&key=${GOOGLE_MAPS_API_KEY}`,
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${postal_code}&key=${GOOGLE_MAPS_API_KEY}`
       );
       const { status, results } = response.data;
 
@@ -65,7 +65,7 @@ function HomeScreen() {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         },
-        2500,
+        2500
       ); // Duration of the animation in milliseconds
     }
   }, [coordinates]);
@@ -76,7 +76,7 @@ function HomeScreen() {
 
   const handleChangeCampuses = () => {
     setPostalCode((prevPostalCode) =>
-      prevPostalCode === sgwPostalCode ? loyolaPostalCode : sgwPostalCode,
+      prevPostalCode === sgwPostalCode ? loyolaPostalCode : sgwPostalCode
     );
   };
 
@@ -116,7 +116,13 @@ function HomeScreen() {
             showsUserLocation={true}
             loadingEnabled={true}
             watchUserLocation={true}
+            showsIndoors={true}
           >
+            <UrlTile
+              urlTemplate="https://api.maptiler.com/tiles/5d61e087-e815-49f0-84b3-61425a484094/{z}/{x}/{y}.png?key=L8y9DWVff6DoI8GKZmgT"
+              maximumZ={200}
+              zIndex={3}
+            />
             {Building.map((building, index) => (
               <Marker
                 key={index}
@@ -130,7 +136,7 @@ function HomeScreen() {
                 />
               </Marker>
             ))}
-            <BuildingColoring />
+
             <ShuttleStop />
           </MapView>
         </>

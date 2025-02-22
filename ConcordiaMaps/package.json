@@ -32,7 +32,7 @@
     "concordiamaps": "file:",
     "dotenv": "^16.4.7",
     "denodeify": "^1.2.1",
-    "expo": "~52.0.27",
+    "expo": "~52.0.36",
     "expo-auth-session": "~6.0.3",
     "expo-location": "^18.0.5",
     "expo-status-bar": "~2.0.1",
