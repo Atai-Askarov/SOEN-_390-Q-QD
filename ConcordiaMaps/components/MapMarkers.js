@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Marker, Callout } from "react-native-maps";
 import { Text, View, Image, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
-import PopupModal from "./PopupModal";
 
 const customMarkerImage = require("../assets/PinLogo.png");
 
@@ -41,11 +40,7 @@ const MapMarkers = ({ markers }) => {
       ))}
 
       {/* Using PopupModal */}
-      <PopupModal
-        isVisible={popupVisible}
-        data={popupData}
-        onClose={closePopup}
-      />
+      
     </>
   );
 };

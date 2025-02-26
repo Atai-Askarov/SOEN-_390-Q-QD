@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screen/HomeScreen";
 import { LocationProvider } from "./contexts/LocationContext";
-import PopupModal from "./components/PopupModal"; // Import the PopupModal
 import styles from "./styles";
 import GetDirections from "./components/GetDirections";
+import IndoorNavigation from "./components/IndoorNavigation"; // Import the new component
 
 // Create Context for modal data and visibility
 export const ModalContext = createContext();
@@ -25,7 +25,6 @@ export default function App() {
 
   return (
     <LocationProvider>
-      {/* Provide the modal context to all components */}
       <ModalContext.Provider
         value={{ isModalVisible, modalData, toggleModal, setModalData }}
       >
@@ -37,15 +36,11 @@ export default function App() {
               component={HomeScreen}
             />
             <Stack.Screen name="GetDirections" component={GetDirections} />
+            <Stack.Screen name="IndoorNavigation" component={IndoorNavigation} />
           </Stack.Navigator>
+          
+          
         </NavigationContainer>
-
-        {/* Add PopupModal here */}
-        <PopupModal
-          isVisible={isModalVisible}
-          data={modalData}
-          onClose={toggleModal}
-        />
       </ModalContext.Provider>
     </LocationProvider>
   );

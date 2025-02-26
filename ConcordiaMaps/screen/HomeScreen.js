@@ -18,7 +18,7 @@ const customMarkerImage = require("../assets/PinLogo.png");
 function HomeScreen() {
   const loyolaPostalCode = process.env.EXPO_PUBLIC_LOYOLA_POSTAL_CODE;
   const sgwPostalCode = process.env.EXPO_PUBLIC_SGW_POSTAL_CODE;
-  const GOOGLE_MAPS_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const GOOGLE_MAPS_API_KEY = '';
 
   const location = useContext(LocationContext);
   const { toggleModal, setModalData } = useContext(ModalContext); // Access setModalData
