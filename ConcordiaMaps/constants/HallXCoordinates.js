@@ -233,8 +233,8 @@ export function HallXCoordinates (floorNumber) {
             x: "627",
             y: "717",
             nearestPoint: {
-                x: "646",
-                y: "799"
+                x: "550",
+                y: "750"
             }
         },
         "checkpoint2": {

@@ -12,7 +12,7 @@ import styles from "../styles";
 import PropTypes from "prop-types";
 
 const FloatingSearchBar = ({ onPlaceSelect, placeholder }) => {
-  const GOOGLE_MAPS_API_KEY = "";
+  const GOOGLE_MAPS_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY;
   const [searchQuery, setSearchQuery] = useState("");
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
