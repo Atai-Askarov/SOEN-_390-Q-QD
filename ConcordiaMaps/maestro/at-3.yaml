@@ -1,0 +1,9 @@
+appId: com.anonymous.ConcordiaMaps
+---
+- launchApp
+- assertVisible: "Henry F. Hall"
+- tapOn:
+    id: change-campus-button
+- assertVisible: "Vanier Extension"
+- tapOn:
+    id: change-campus-button
